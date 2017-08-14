@@ -1,13 +1,17 @@
 <?php
 class SEO {
-	public $properties = array(
-		'og' => array(
+	const properties = array(
+		'default' => array(
 			'title' => array('title', 'og:title', 'twitter:title'),
-			'description' => array('description', 'og:description', 'twitter:description'),
-			'' => '',
+			'description' => array('description', 'og:description', 'twitter:description')
 		),
 		
-		'twitter' = array(
+		'opengraph' => array(
+			'title' => 'og:title',
+			'description' => 'og:description'
+		),
+		
+		'twitter' => array(
 			'card' => 'twitter:card',
 			
 			'site' => 'twitter:site',
@@ -34,7 +38,7 @@ class SEO {
 			'app:url:iphone' => 'twitter:app:id:iphone',
 			'app:url:ipad' => 'twitter:app:id:ipad',
 			'app:url:googleplay' => 'twitter:app:url:googleplay',
-			'app:country' => 'twitter:app:country',
+			'app:country' => 'twitter:app:country'
 		)
 	);
 	
@@ -64,26 +68,38 @@ class SEO {
 	// HTML tag generators
 	
 	public static function meta($property, $content) {
-		return '<meta property="'.$property.'" content="'.$content.'">"';
+		return '<meta property="'.$property.'" content="'.$content.'">';
 	}
 	
 	public static function link($rel, $href, $title = null) {
 		$content = '<link rel="'.$rel.'" href="'.$href.'"';
 		
 		// insert title attribute if defined or else close tag
-		isset($title) ? $content .= ' title="'.$title.'">' : $content .= '>';
+		if (isset($title)) $content .= ' title="'.$title.'"';
 		
-		return $content;
+		return $content.'>';
 	}
 	
 	// APIs
 	
 	public static function OpenGraph($data) {
-		return $this->getTags($property, $value, $this->properties['og'])
+		$return = array();
+		
+		foreach ($data as $property => $value) {
+			$return = array_merge($return, self::getTags($property, $value, self::properties['opengraph']));
+		}
+		
+		return $return;
 	}
 	
 	public static function twitter($data) {
-		return $this->getTags($property, $value, $this->properties['twitter']);
+		$return = array();
+		
+		foreach ($data as $property => $value) {
+			array_merge($return, self::getTags($property, $value, self::properties['twitter']));
+		}
+		
+		return $return;
 	}
 }
 
@@ -91,19 +107,23 @@ class SEO {
  * Builds list of SEO tags
  * and echoes out with export() function
  */
-class SEOBuild extends SEO {
+class SEOBuild {
 	public $metaTags = array();
+	public $linkTags = array();
 	
-	public static function addOpenGraph($data) {
+	public function add($data) {
 		foreach ($data as $property => $value) {
-			array_merge($this->metaTags, $this->OpenGraph($data));
+			$this->metaTags = array_merge($this->metaTags, SEO::getTags($property, $value, SEO::properties['default']));
 		}
+		$this->metaTags = array_merge($this->metaTags, SEO::OpenGraph($data), SEO::twitter($data));
 	}
 	
-	public static function addTwitter($data) {
-		foreach ($data as $property => $value) {
-			array_merge($this->metaTags, $this->twitter($data));
-		}
+	public function addOpenGraph($data) {
+		$this->metaTags = array_merge($this->metaTags, SEO::OpenGraph($data));
+	}
+	
+	public function addTwitter($data) {
+		$this->metaTags = array_merge($this->metaTags, SEO::twitter($data));
 	}
 	
 	/**
@@ -114,12 +134,12 @@ class SEOBuild extends SEO {
 	 */
 	public function export() {
 		foreach ($this->metaTags as $property => $value) {
-			echo $this->meta($property, $value);
+			echo SEO::meta($property, $value);
 		}
 		
 		foreach ($this->linkTags as $link) {
-			$title = $link['title'] ?? : NULL;
-			echo $this->link($link['rel'], $link['href'], $title);
+			$title = $link['title'] ?? NULL;
+			echo SEO::link($link['rel'], $link['href'], $title);
 		}
 	}
 }
@@ -127,7 +147,7 @@ class SEOBuild extends SEO {
 $seo = new SEOBuild();
 
 
-$seo->make(array(
+$seo->add(array(
 	'title' => 'cat shop',
 	'site' => '@catshop',
 	'creator' => '@digitalscape_',
