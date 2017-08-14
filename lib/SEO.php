@@ -2,8 +2,8 @@
 class SEO {
 	const properties = array(
 		'default' => array(
-			'title' => array('title', 'og:title', 'twitter:title'),
-			'description' => array('description', 'og:description', 'twitter:description')
+			'title' => 'title',
+			'description' => 'description'
 		),
 		
 		'opengraph' => array(
@@ -42,7 +42,7 @@ class SEO {
 		)
 	);
 	
-	public static function getTags($property, $value, $set) {
+	public static function getTags($property, $value, array $set) {
 		$tags = array();
 		
 		// check if property name exists in set
@@ -59,7 +59,7 @@ class SEO {
 			}
 		} else {
 			// set as given property if not found in set
-			$tags[$property] = $value;
+			// $tags[$property] = $value;
 		}
 		
 		return $tags;
@@ -96,7 +96,7 @@ class SEO {
 		$return = array();
 		
 		foreach ($data as $property => $value) {
-			array_merge($return, self::getTags($property, $value, self::properties['twitter']));
+			$return = array_merge($return, self::getTags($property, $value, self::properties['twitter']));
 		}
 		
 		return $return;
@@ -115,6 +115,7 @@ class SEOBuild {
 		foreach ($data as $property => $value) {
 			$this->metaTags = array_merge($this->metaTags, SEO::getTags($property, $value, SEO::properties['default']));
 		}
+		
 		$this->metaTags = array_merge($this->metaTags, SEO::OpenGraph($data), SEO::twitter($data));
 	}
 	
@@ -146,12 +147,13 @@ class SEOBuild {
 
 $seo = new SEOBuild();
 
-
 $seo->add(array(
 	'title' => 'cat shop',
 	'site' => '@catshop',
 	'creator' => '@digitalscape_',
-	'description' => 'A short description.'
+	'description' => 'A short description.',
+	'image' => 'http://placekitten.com.s3.amazonaws.com/homepage-samples/408/287.jpg',
+	'image:alt' => 'kitten'
 ));
 
 $seo->export();
