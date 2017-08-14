@@ -1,0 +1,10 @@
+<meta charset="utf-8">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="shortcut icon" href="<?=$this->config['cdn']?>/i/icon.ico">
+<script>require={baseUrl:"<?=$this->config['cdn']?>/js"};templatePath="<?=$this->config['jsTemplatePath']?>"</script>
+<script src="<?=$this->config['cdn']?>/js/query.js" async></script>
+<script src="<?=$this->config['cdn']?>/js/require.js" data-main="app" async></script>
+<?php if (isset($this->config['_ga'])) {
+$domain = isset($this->config['domain']) ? $this->config['domain'] : 'auto'; ?>
+<script>requireGA={_ga:'<?=$this->config["_ga"]?>',domain:'<?=$domain?>'};</script>
+<?php } ?>

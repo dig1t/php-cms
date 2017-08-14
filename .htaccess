@@ -1,0 +1,23 @@
+DirectoryIndex index.php
+
+ErrorDocument 400 /error?e=400
+ErrorDocument 401 /error?e=401
+ErrorDocument 403 /error?e=403
+ErrorDocument 404 /error?e=404
+ErrorDocument 500 /error?e=500
+
+<IfModule mod_rewrite.c>
+	RewriteEngine on
+	RewriteBase /
+	
+	Options +FollowSymLinks -MultiViews
+	
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME} !-f
+	
+	RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+	
+	# remove www
+	RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+	RewriteRule ^(.*)$ http://%1/$1 [L,R=301]
+</IfModule>
