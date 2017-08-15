@@ -1,4 +1,7 @@
 <?php
+/**
+ * A library to easily insert SEO html tags
+ */
 class SEO {
 	const properties = array(
 		'default' => array(
@@ -144,18 +147,4 @@ class SEOBuild {
 		}
 	}
 }
-
-$seo = new SEOBuild();
-
-$seo->add(array(
-	'title' => 'cat shop',
-	'site' => '@catshop',
-	'creator' => '@digitalscape_',
-	'description' => 'A short description.',
-	'image' => 'http://placekitten.com.s3.amazonaws.com/homepage-samples/408/287.jpg',
-	'image:alt' => 'kitten'
-));
-
-$seo->export();
-
 ?>
