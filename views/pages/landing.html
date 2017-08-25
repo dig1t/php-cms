@@ -1,0 +1,22 @@
+<div class="landing" style="background-image: url(<?=$this->background?>)">
+	<div class="row">
+		<div class="col-6">
+			<h1>Welcome to network.</h1>
+		</div>
+		<div class="col-6">
+			<form action="/action/login" method="POST">
+				<input type="hidden" name="form_redirect" value="/">
+				<input type="hidden" name="form_token" value="<?=$this->form_token?>">
+				<input type="hidden" name="form_time" value="<?=$this->form_time?>">
+				<input type="text" name="form_login" placeholder="E-mail or Phone Number">
+				<input type="password" name="form_password" placeholder="Password">
+				<label>
+					<input type="checkbox" name="form_remember">
+					<span>Remember Me</span>
+				</label>
+				<input type="submit" value="Login">
+			</form>
+			<span>Don&#39;t have an account? <a href="/register">Sign Up</a></span>
+		</div>
+	</div>
+</div>

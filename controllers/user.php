@@ -1,9 +1,9 @@
 <?php
 defined('ROOT') OR exit;
 
-class User extends App {
+class User extends Bootstrap {
   public function view() {
-    
+    echo 123;
   }
 }
 ?>

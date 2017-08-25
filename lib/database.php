@@ -30,6 +30,7 @@ class Database {
           PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         )
 			);
+			
       $instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $instance->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
       
@@ -74,10 +75,9 @@ class Database {
 		try {
 			$q = $this->prepare($sql);
 			$q->execute($param);
-			//print_r($q->errorInfo());
 			return $q;
 		} catch(PDOException $e) {
-			echo 'E301';
+			echo print_r($q->errorInfo());
 		}
 	}
 	

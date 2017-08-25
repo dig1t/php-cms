@@ -1,6 +1,8 @@
 <?php
 defined('ROOT') OR exit;
 
+require_once('lib/SEO.php');
+
 class View extends Bootstrap {
 	protected $path;
 	protected $file;
@@ -12,26 +14,24 @@ class View extends Bootstrap {
 	protected $js = array();
 	protected $requireJS = array();
 	
+	protected $seo;
+	
 	/** set default template configuration **/
 	
 	public $config = array(
 		'name' => 'Website',
 		'html' => false,
-		'cdn' => '/static',
+		'cdn' => '/assets',
 		'template' => 'default',
 		'template_folder_name' => 'templates'
 	);
 	
-	public $meta = array(
-		'description' => '',
-		'robots' => 'index,follow',
-		'viewport' => 'width=device-width, minimum-scale=1.0'
-	);
+	public $meta = array();
 	
 	public $template = array(
-		/** meta **/
+		// default
 		'name' => 'Unknown',
-		'version' => '0.0',
+		'version' => '0.1',
 		
 		/** settings **/
 		'navigation' => true,
@@ -40,6 +40,8 @@ class View extends Bootstrap {
 	);
 	
 	public function __construct($path, $templatePage = true) {
+		$this->seo = new SEOBuild();
+		
 		if (defined('CONFIG')) {
 			foreach($this->config as $key => $value) {
 				if (isset(CONFIG[$key])) $this->config[$key] = CONFIG[$key];
@@ -116,7 +118,7 @@ class View extends Bootstrap {
 				$this->template['path'] = 'views'.DS;
 			}
 			
-			include('views'.DS.'styles.html');
+			// include('views'.DS.'styles.html');
 			$this->setConfig('jsTemplatePath', $this->config['cdn'].'/js');
 		}
 		
@@ -209,16 +211,12 @@ class View extends Bootstrap {
 			
 			echo '<!DOCTYPE html><title>'.$this->config['title'].'</title>';
 			
-			foreach($this->meta as $name => $content) {
-				if ($content === true) $content = 'true';
-				
-				echo '<meta name="'.$name.'" content="'.$content.'" />';
-			}
-			
+			$this->seo->addMeta($this->meta);
+			$this->seo->export();
 			$this->insert('views'.DS.'header', false);
 			
 			foreach($this->css as $path) {
-				echo '<link href="'.$path.'" rel="stylesheet">';
+				echo SEO::link('stylesheet', $path);
 			}
 			
 			foreach($this->js as $path) {

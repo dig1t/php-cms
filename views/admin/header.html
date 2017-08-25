@@ -1,0 +1,23 @@
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="shortcut icon" href="<?=$this->config['cdn']?>/i/icon.ico">
+<script>require={baseUrl:"<?=$this->config['cdn']?>/js"}</script>
+<script src="<?=$this->config['cdn']?>/js/require.js" data-main="app" async></script>
+<script type="text/javascript" src="https://adbit.co/js/show_ads.js"></script>
+<?php if (isset($this->config['_ga'])) {
+$domain = isset($this->config['domain']) ? $this->config['domain'] : 'auto'; ?>
+<script>
+define('ga', function(require) {
+  var module;
+  window.GoogleAnalyticsObject = 'ga';
+  window.ga = function() { (window.ga.q = window.ga.q || []).push(arguments); };
+  window.ga.l = 1 * new Date();
+  window.ga('create', '<?=$this->config["_ga"]?>', '<?=$domain?>');
+  window.ga('send', 'pageview');
+  module = function() { window.ga.apply(this, arguments); };
+  require(['//www.google-analytics.com/analytics.js']);
+  return module;
+});
+</script>
+<?php } ?>

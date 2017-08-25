@@ -4,23 +4,43 @@ $app->router->add('/', array(
   'action' => 'view'
 ));
 
+$app->router->add('/action/{action:[a-z]+}', array(
+	'controller' => 'action',
+	'action' => 'do'
+));
+
 $app->router->add('/error', array(
   'controller' => 'error',
   'action' => 'view'
 ));
 
 $app->router->add('/login', array(
-  'controller' => 'auth',
+  'controller' => 'account',
   'action' => 'login'
 ));
 
 $app->router->add('/login/reset', array(
-  'controller' => 'auth',
+  'controller' => 'account',
   'action' => 'reset'
 ));
 
 $app->router->add('/register', array(
-  'controller' => 'auth',
+  'controller' => 'account',
+  'action' => 'register'
+));
+
+$app->router->add('/user/login', array(
+  'controller' => 'account',
+  'action' => 'login'
+));
+
+$app->router->add('/user/login/reset', array(
+  'controller' => 'account',
+  'action' => 'reset'
+));
+
+$app->router->add('/user/register', array(
+  'controller' => 'account',
   'action' => 'register'
 ));
 

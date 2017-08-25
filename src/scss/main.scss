@@ -1,0 +1,124 @@
+@import 'base.scss';
+@import 'plugin.scss';
+@import 'util.scss';
+@import 'config.scss';
+
+@import 'pages.scss';
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300italic,300,100italic,100,500italic,400italic,500,700,900,700italic,900italic);
+
+// Custom checkbox and radio
+
+input {
+	&[type="checkbox"], &[type="radio"] {
+		width: 18px;
+		height: 18px;
+		position: relative;
+		cursor: pointer;
+		
+		&:before {
+			content: '';
+			background-image: url(/static/i/spritesheet.svg);
+			background-color: inherit;
+			width: 18px;
+			height: 18px;
+			position: absolute;
+		}
+	}
+	
+	&[type="checkbox"] {
+		&:before {
+			background-position: 0 0;
+		}
+		
+		&:hover:before {
+			background-position: 0 -18px;
+		}
+		
+		&:checked:before {
+			background-position: 0 -36px;
+		}
+		
+		&[disabled] {
+			&:before {
+				background-position: 0 -54px;
+			}
+			
+			&:checked:before {
+				background-position: 0 -72px;
+			}
+			
+			&.dark {
+				&:before {
+					background-position: 0 -234px;
+				}
+				
+				&:checked:before {
+					background-position: 0 -252px;
+				}
+			}
+		}
+		
+		&.dark {
+			&:before {
+				background-position: 0 -180px;
+			}
+			
+			&:hover:before {
+				background-position: 0 -198px;
+			}
+			
+			&:checked:before {
+				background-position: 0 -216px;
+			}
+		}
+	}
+	
+	&[type="radio"] {
+		&:before {
+			background-position: 0 -90px;
+		}
+		
+		&:hover:before {
+			background-position: 0 -108px;
+		}
+		
+		&:checked:before {
+			background-position: 0 -126px;
+		}
+		
+		&[disabled] {
+			&:before {
+				background-position: 0 -144px;
+			}
+			
+			&:checked:before {
+				background-position: 0 -162px;
+			}
+			
+			.dark {
+				&:before {
+					background-position: 0 -324px;
+				}
+				
+				&:checked:before {
+					background-position: 0 -342px;
+				}
+			}
+		}
+		
+		&.dark {
+			&:before {
+				background-position: 0 -270px;
+			}
+			
+			&:hover:before {
+				background-position: 0 -288px;
+			}
+			
+			&:checked:before {
+				background-position: 0 -306px;
+			}
+		}
+	}
+}

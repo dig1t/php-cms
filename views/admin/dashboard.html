@@ -1,0 +1,43 @@
+<div class="hero">
+  <div class="dark-overlay">
+    <h3>Dashboard</h3>
+    <div class="social-media">
+      <div data-service="twitter"><i class="fa fa-twitter"></i> <span class="value">1.8M</span></div>
+      <div data-service="facebook"><i class="fa fa-facebook"></i> <span class="value">507K</span></div>
+      <div data-service="instagram"><i class="fa fa-instagram"></i> <span class="value">185K</span></div>
+    </div>
+  </div>
+</div>
+<div class="<?=$this->view?> row">
+  <?=$this->breadcrumbs?>
+  <div class="col-6 analytics">
+    <div class="box">
+      <div class="header">Analytics</div>
+      <div class="content"></div>
+    </div>
+  </div>
+  <div class="col-6 quick-post">
+    <div class="box">
+      <div class="header">Write a Quick Post</div>
+      <div class="content">
+      	<input class="title" name="title" placeholder="Title" />
+      	<div class="divider"></div>
+      	<textarea class="body" name="body" placeholder="Body"></textarea>
+        <div class="buttons clearfix">
+          <div class="float-right">
+            <button class="btn submit">Save</button>
+            <button class="btn submit">Publish</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-6 recent">
+  	<div class="box">
+  		<div class="header">Recent Activity</div>
+  		<div class="content">
+  			
+  		</div>
+  	</div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="<?=$this->view?> row">
+  <div class="col-xl">
+    <div class="header">Editor</div>
+    <?=$this->breadcrumbs?>
+  </div>
+  <div class="col-xl">
+    <div class="box">
+      <div class="content">
+        <input class="title" name="title" placeholder="Title" value="<?=$this->post['post_title']?>" />
+      </div>
+    </div>
+  </div>
+  <div class="col-xl">
+    <div class="box">
+      <div class="controls">
+      	<button class="fa fa-bold" data-action="bold"></button>
+      	<button class="fa fa-italic" data-action="italic"></button>
+      	<button class="fa fa-underline" data-action="underline"></button>
+      	<button class="fa fa-strikethrough" data-action="strikethrough"></button>
+      	<div class="divider"></div>
+      	<button class="fa fa-quote-right" data-action="blockquote"></button>
+      	<button class="fa fa-photo" data-action="image"></button>
+      	<button class="fa fa-link" data-action="link"></button>
+      </div>
+      <textarea class="body" name="body" placeholder="Body"><?=$this->post['post_content']?></textarea>
+    </div>
+  </div>
+</div>

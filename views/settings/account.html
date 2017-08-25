@@ -1,0 +1,55 @@
+<div id="settings">
+	<?php include($this->settings_navigation)?>
+	<div class="main">
+		<div class="title blue">Account</div>
+		<form method="POST" action="/settings/account">
+			<div class="container">
+				<div class="setting">
+					<label class="text">
+						<span><i class="fa fa-user"></i> Username</span>
+						<input type="text" name="username" autocomplete="off" maxlength="32" value="<?=$this->username?>">
+					</label>
+					<div class="hint">http://website.com/<span name="username_link"><?=$this->username?></span></div>
+				</div>
+				<div class="setting">
+					<label class="text">
+						<span><i class="fa fa-envelope-o"></i> Email Address</span>
+						<input type="text" name="email_address" autocomplete="off" maxlength="34" value="<?=$this->email?>">
+					</label>
+				</div>
+				<div class="setting">
+					<label class="text">
+						<span><i class="fa fa-lock"></i> New Password</span>
+						<input type="password" name="new_password" autocomplete="off" maxlength="34" placeholder="New password">
+					</label>
+				</div>
+			</div>
+			<div class="container">
+				<div class="setting">
+					<label class="text">
+						<span><i class="fa fa-user"></i> Gender</span>
+						<label>
+							<input type="radio" name="gender"<?=$this->gender_male_checked?> value="0">
+							Male
+						</label>
+						<label>
+							<input type="radio" name="gender"<?=$this->gender_female_checked?> value="1">
+							Female
+						</label>
+					</label>
+				</div>
+			</div>
+			<div class="container">
+				<div class="setting">
+					<label class="text">
+						<span><i class="fa fa-lock"></i> Current Password</span>
+						<input type="password" name="current_password_field" name="password" autocomplete="off" maxlength="34">
+					</label>
+				</div>
+			</div>
+			<div class="container">
+				<input type="submit" name="settings_submit" class="submit save" value="Save Changes">
+			</div>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,28 @@
+<div class="auth sign-up">
+	<div class="background"></div>
+	<div class="row">
+		<div class="col-12">
+			<form action="/action/register" method="POST">
+				<input type="hidden" name="form_redirect" value="/">
+				<input type="hidden" name="form_token" value="<?=$this->form_token?>">
+				<input type="hidden" name="form_time" value="<?=$this->form_time?>">
+				<label>
+					<input type="text" name="form_name" placeholder="Name">
+				</label>
+				<label>
+					<input type="email" name="form_login" placeholder="E-mail">
+				</label>
+				<label>
+					<input type="tel" name="form_phone" placeholder="Phone Number">
+				</label>
+				<label>
+					<input type="password" name="form_password" placeholder="Password">
+				</label>
+				<label>
+					<input type="submit" value="Sign Up">
+				</label>
+			</form>
+			<span class="bottom">Already have an account? <a href="/login">Log in</a></span>
+		</div>
+	</div>
+</div>

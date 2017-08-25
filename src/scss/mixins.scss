@@ -1,0 +1,14 @@
+@mixin breakpoint($point, $property: 'max-width') {
+  @if map-has-key($breakpoints, $point) {
+    $point: map-get($breakpoints, $point);
+  }
+  
+  @media (#{$property}: #{$point}) { @content; }
+}
+
+@mixin gradient($begin, $end, $deg: 0) {
+	background-color: $begin;
+	background-image: -moz-linear-gradient($deg, $begin, $end);
+	background-image: -webkit-linear-gradient($deg, $begin, $end);
+	background-image: linear-gradient($deg, $begin, $end);
+}

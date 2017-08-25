@@ -71,6 +71,8 @@ class SEO {
 	// HTML tag generators
 	
 	public static function meta($property, $content) {
+		if ($content === true) $content = 'true';
+		
 		return '<meta property="'.$property.'" content="'.$content.'">';
 	}
 	
@@ -120,6 +122,16 @@ class SEOBuild {
 		}
 		
 		$this->metaTags = array_merge($this->metaTags, SEO::OpenGraph($data), SEO::twitter($data));
+	}
+	
+	public function addMeta($data, $content = null) {
+		if (is_string($data)) {
+			// if $data is a string then $content must be defined
+			$metaTags[$data] = $content;
+		} else {
+			// else merge given array with current meta tags
+			$this->metaTags = array_merge($this->metaTags, $data);
+		}
 	}
 	
 	public function addOpenGraph($data) {

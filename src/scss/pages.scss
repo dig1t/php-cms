@@ -1,0 +1,55 @@
+div.landing {
+	background-position: center;
+	background-size: cover;
+}
+
+.landing > .row {
+	width: 80%;
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 80px 0;
+	
+	h1 {
+		color: #fff;
+	}
+}
+
+.auth {
+	position: relative;
+	overflow: hidden;
+	
+	.background {
+		background-image: url(https://i.imgur.com/ExEbVKS.jpg);
+		background-position: center;
+		background-size: cover;
+		margin: -10px;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: -1;
+		filter: blur(3px);
+	}
+	
+	& > .row {
+		width: 50%;
+		max-width: 1000px;
+		margin: 0 auto;
+		padding: 80px 0;
+	}
+	
+	label:not(:last-child) > input {
+		margin-bottom: 15px;
+	}
+	
+	label > input {
+		border: 0;
+		border-radius: 4px;
+		padding: 12px;
+	}
+	
+	.bottom {
+		color: #fff;
+	}
+}

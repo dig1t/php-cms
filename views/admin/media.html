@@ -1,0 +1,34 @@
+<div class="<?=$this->view?> row">
+  <div class="col-xl">
+    <div class="header">Media</div>
+  </div>
+  <!-- navigation -->
+  <div class="col-xl">
+    <div class="box">
+      <div class="content">
+        <button class="btn upload">Upload</button>
+      </div>
+    </div>
+  </div>
+  <!-- media view -->
+  <div class="col-xl">
+    <div class="box">
+      <div class="view row">
+        <?php foreach (range(1, 14) as $i) { ?>
+        <div class="file col" data-id="<?=rand(10000000,99999999)?>">
+          <div class="content" style="background-image: url(https://unsplash.it/<?=rand(300,500)?>/<?=rand(200,400)?>)">
+            <!-- thumbnail -->
+            <div class="details">
+              <div class="meta">
+                <div class="title">Random Title</div>
+                <div class="date">November <?=rand(1, 30)?>, 2017</div>
+              </div>
+              <div class="tag"><i class="fa fa-tag"></i>photography</div>
+            </div>
+          </div>
+        </div>
+        <?php } ?>
+      </div>
+    </div>
+  </div>
+</div>

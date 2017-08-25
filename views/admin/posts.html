@@ -1,0 +1,28 @@
+<div class="<?=$this->view?> row">
+  <div class="col-xl">
+    <div class="header">Posts</div>
+    <?=$this->breadcrumbs?>
+  </div>
+  <!-- navigation -->
+  <div class="col-xl">
+    <div class="box">
+      <div class="content">
+        <button class="btn new">New Post</button>
+      </div>
+    </div>
+  </div>
+  <!-- post view -->
+  <div class="col-xl">
+    <div class="box">
+      <div class="view row">
+        <?php foreach($this->posts as $post) { ?>
+        <div class="list-post col" data-post-id="<?=$post['post_id']?>">
+          <a class="title" href="/admin/posts/<?=$post['post_id']?>"><?=$post['post_title']?></a>
+          <div class="date"><?=$post['post_date']?></div>
+          <div class="body"><?=$post['post_content']?></div>
+        </div>
+        <?php } ?>
+      </div>
+    </div>
+  </div>
+</div>
