@@ -32,7 +32,7 @@ $config['seo'] = array(
 );
 
 $config['stripe'] = array(
-	'api_key' => 'sk_test_v7aj5Q6eeemfpr1vAPftYHXO',
-  'token' => 'tok_18u3SS2Di3EoaXWN9dmhMB7Q'
+	'api_key' => 'sk_test_xxxxxx',
+  'token' => 'tok_xxxxxx'
 );
 ?>
