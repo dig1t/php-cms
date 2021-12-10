@@ -11,9 +11,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Dig1t/network.git"
+    "url": "https://github.com/dig1t/network.git"
   },
-  "author": "Digitalscape",
+  "author": "dig1t",
   "license": "ISC",
   "devDependencies": {
     "grunt": "^1.0.1",
